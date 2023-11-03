@@ -48,7 +48,7 @@ function PaginationFooter({
         <Select
           options={pageOptions}
           value={pageNo}
-          style={{ width: '5rem' }}
+          style={{ width: '4rem' }}
           onChange={goToClickedPage}
         />
       </div>
