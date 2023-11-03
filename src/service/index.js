@@ -1,6 +1,6 @@
 import axios from 'axios';
 import urls from './url';
-import { constructURL } from '../Utils/Utils';
+import { constructURL } from '../utils/Utils';
 
 const apiURL = 'https://rickandmortyapi.com/api';
 export const getPageData = (pageInfo, searchText, id) => {

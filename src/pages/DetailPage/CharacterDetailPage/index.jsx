@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import styles from './CharacterDetailPage.module.scss';
 import { getPageData } from '../../../service';
 import RickMortyActions from '../../../store/RickMortyStore.actionhandlers';
-import { STATUS_COLOR } from '../../../Constants/RickMortyConstants';
+import { STATUS_COLOR } from '../../../constants/RickMortyConstants';
 
 function CharacterDetailPage({
   pageInfo, setSingleData, singleData,

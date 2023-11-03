@@ -36,6 +36,21 @@ function CharacterPage({
       });
     }
   };
+  const onClearFilter = () => {
+    if (Object.keys(filter).length > 0) {
+      getPageData({ ...pageInfo, pageNo: 1, filter: {} }).then(({ info, results }) => {
+        setCardData(results);
+        setApiInfo(info);
+      }).catch(() => {
+        setCardData([]);
+        setApiInfo({});
+      }).finally(() => {
+        setPageInfo({ filter: {} });
+        setPageInfo({ pageNo: 1 });
+        setSearchText('');
+      });
+    }
+  };
   const onFilterTypeChange = (val) => {
     setPageInfo({
       filter: { ...filter, name: val },
@@ -74,6 +89,14 @@ function CharacterPage({
           onClick={onApplyFilter}
         >
           Apply Filter
+        </Button>
+        <Button
+          className={styles.clearFilterButton}
+          type="primary"
+          danger
+          onClick={onClearFilter}
+        >
+          Clear Filter
         </Button>
       </div>
       <div className={styles.cardsSection}>

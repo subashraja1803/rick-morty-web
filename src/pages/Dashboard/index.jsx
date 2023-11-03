@@ -6,9 +6,9 @@ import { useNavigate } from 'react-router-dom';
 import styles from './DashBoard.module.scss';
 import { getPageData } from '../../service';
 import RickMortyActions from '../../store/RickMortyStore.actionhandlers';
-import { PAGE_TYPES } from '../../Constants/RickMortyConstants';
-import PaginationFooter from '../../Molecules/PaginationFooter';
-import SearchBox from '../../Molecules/SearchBox';
+import { PAGE_TYPES } from '../../constants/RickMortyConstants';
+import PaginationFooter from '../../molecules/PaginationFooter';
+import SearchBox from '../../molecules/SearchBox';
 
 function Dashboard({
   pageInfo, setCardData, setApiInfo, setPageInfo, setSearchText, searchText,
