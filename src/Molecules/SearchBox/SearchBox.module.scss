@@ -1,0 +1,14 @@
+.searchBoxContainer {
+  color:azure;
+  font-size: 1.5rem;;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  .searchBox {
+    border-radius: 1rem;
+    width: 20rem;
+  }
+  .searchButton {
+    width: 5rem;
+  }
+}

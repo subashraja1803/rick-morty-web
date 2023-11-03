@@ -1,0 +1,26 @@
+.paginationFooter {
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 7rem;
+  font-size: 1.3rem;
+  color: azure;
+  .paginationBox {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+ .navigationText {
+    font-size: 1.2rem;
+    text-decoration: underline;
+    color: rgb(0, 145, 255);
+    cursor: pointer;
+  }
+  .disabledText {
+    text-decoration: underline;
+    font-size: 1.2rem;
+    color:rgba(169, 169, 169, 0.5);
+    cursor: no-drop;
+  }
+}

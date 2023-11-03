@@ -1,0 +1,42 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .titleSection {
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    background-color: rgb(245, 245, 245);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+    width: 100vw;
+    height: 12rem;
+  }
+  .navLinkSection {
+    background-color: rgb(245, 245, 245);
+    display: flex;
+    gap: 1rem;
+    font-size: 1.5rem;
+    justify-content: right;
+    align-items: center;
+    height: 3rem;
+    width: 100%;
+    .navLinkItem {
+      padding: 0 2rem;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      &:hover {
+        background-color: rgb(196, 196, 196);
+        color: rgb(0, 123, 255);
+      }
+    }
+  }
+  .mainContent {
+    width: 100%;
+    min-height: 60rem;
+    background-color: rgb(39, 43, 51);
+  }
+}
