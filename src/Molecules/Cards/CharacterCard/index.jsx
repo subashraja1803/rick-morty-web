@@ -1,12 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import styles from './CharacterCard.module.scss';
 import { STATUS_COLOR } from '../../../Constants/RickMortyConstants';
 
-function CharacterCard({ characterData, pageInfo }) {
+function CharacterCard({ cardData, pageInfo }) {
   const {
     status, species, origin, location, image, name, id,
-  } = characterData;
+  } = cardData;
   const navigate = useNavigate();
   return (
     <div className={styles.characterCard}>
@@ -45,5 +46,10 @@ function CharacterCard({ characterData, pageInfo }) {
     </div>
   );
 }
+
+CharacterCard.propTypes = {
+  cardData: PropTypes.object.isRequired,
+  pageInfo: PropTypes.object.isRequired,
+};
 
 export default CharacterCard;

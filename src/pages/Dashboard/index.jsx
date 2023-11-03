@@ -8,14 +8,16 @@ import { getPageData } from '../../service';
 import RickMortyActions from '../../store/RickMortyStore.actionhandlers';
 import { PAGE_TYPES } from '../../Constants/RickMortyConstants';
 import PaginationFooter from '../../Molecules/PaginationFooter';
+import SearchBox from '../../Molecules/SearchBox';
 
 function Dashboard({
-  pageInfo, setCardData, setApiInfo, setPageInfo,
+  pageInfo, setCardData, setApiInfo, setPageInfo, setSearchText, searchText,
+  toggleLoader,
 }) {
   const { pageType } = pageInfo;
   const navigate = useNavigate();
   useEffect(() => {
-    getPageData(pageInfo).then((response) => {
+    getPageData({ pageType }).then((response) => {
       const { info, results } = response;
       setApiInfo(info);
       setCardData(results);
@@ -24,6 +26,22 @@ function Dashboard({
       setApiInfo({});
     });
   }, [pageInfo?.pageType]);
+  const onCharacterSearch = () => {
+    toggleLoader(true);
+    getPageData({ ...pageInfo, pageNo: 1 }, searchText).then(({ info, results }) => {
+      setCardData(results);
+      setApiInfo(info);
+    }).catch(() => {
+      setCardData([]);
+      setApiInfo({});
+    }).finally(() => {
+      toggleLoader(false);
+      setPageInfo({ pageNo: 1 });
+    });
+  };
+  const onSearchTextChange = ({ target: { value } }) => {
+    setSearchText(value);
+  };
   const restPageTypes = Object.keys(PAGE_TYPES).filter(page => page !== pageType);
   const RenderComponent = PAGE_TYPES[pageType]?.renderComponent;
   return (
@@ -36,6 +54,7 @@ function Dashboard({
       <div className={styles.navLinkSection}>
         {restPageTypes.map(type => (
           <div
+            key={type}
             className={styles.navLinkItem}
             onClick={() => { navigate(`/${type}`); setPageInfo({ pageType: type }); }}
             role="button"
@@ -45,6 +64,14 @@ function Dashboard({
         ))}
       </div>
       <div className={styles.mainContent}>
+        <div className={styles.characterHeader}>Characters</div>
+        <div className={styles.subHeader}>
+          <SearchBox
+            searchText={searchText}
+            onChange={onSearchTextChange}
+            onSearch={onCharacterSearch}
+          />
+        </div>
         <RenderComponent />
         <PaginationFooter />
       </div>
@@ -56,16 +83,23 @@ Dashboard.propTypes = {
   pageInfo: PropTypes.object.isRequired,
   setCardData: PropTypes.func.isRequired,
   setApiInfo: PropTypes.func.isRequired,
+  setPageInfo: PropTypes.func.isRequired,
+  setSearchText: PropTypes.func.isRequired,
+  searchText: PropTypes.string.isRequired,
+  toggleLoader: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({ rickMortyStore }) => ({
   pageInfo: _get(rickMortyStore, 'pageInfo'),
+  searchText: _get(rickMortyStore, 'searchText'),
 });
 
 const mapDispatchToProps = dispatch => ({
   setApiInfo: payload => dispatch(RickMortyActions.setApiInfo(payload)),
   setPageInfo: payload => dispatch(RickMortyActions.setPageInfo(payload)),
   setCardData: payload => dispatch(RickMortyActions.setCardData(payload)),
+  setSearchText: payload => dispatch(RickMortyActions.setSearchText(payload)),
+  toggleLoader: payload => dispatch(RickMortyActions.toggleLoader(payload)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

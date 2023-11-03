@@ -1,0 +1,25 @@
+.characterPage {
+  .filterSection {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    .filterType {
+      .filterTypeBox {
+        width: 12rem;
+      }
+    }
+    .filterValue {
+      .filterValueBox {
+        width: 16rem;
+      }
+    }
+  }
+  .cardsSection {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+  }
+}

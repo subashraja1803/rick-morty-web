@@ -25,6 +25,7 @@
       word-wrap: break-word;
       .name {
         font-size: 1.8rem;
+        text-decoration: underline;
         font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
         &:hover {
           color: rgb(255, 152, 0);

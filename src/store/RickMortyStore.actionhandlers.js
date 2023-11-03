@@ -22,6 +22,13 @@ export default class RickMortyActions {
     };
   }
 
+  static setSingleData(payload) {
+    return {
+      type: RICK_MORTY_STORE_ACTIONS.SET_SINGLE_DATA,
+      payload,
+    };
+  }
+
   static setSearchText(payload) {
     return {
       type: RICK_MORTY_STORE_ACTIONS.SET_SEARCH_TEXT,

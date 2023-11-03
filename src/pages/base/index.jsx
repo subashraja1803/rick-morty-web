@@ -8,15 +8,21 @@ import { connect } from 'react-redux';
 import Loader from '../../Molecules/Loader';
 import Dashboard from '../Dashboard';
 import RickMortyActions from '../../store/RickMortyStore.actionhandlers';
-import DetailPage from '../DetailPage';
+import CharacterDetailPage from '../DetailPage/CharacterDetailPage';
 
-function RouteSwitch({ showLoader }) {
+function RouteSwitch({ showLoader, setPageInfo }) {
   const { pathname } = window.location;
   useEffect(() => {
     if (pathname === '/') {
       window.location.replace('/character');
     }
   }, [pathname]);
+
+  useEffect(() => {
+    if (['character', 'location', 'episode'].includes(pathname.replace('/', ''))) {
+      setPageInfo({ pageType: pathname.replace('/', '') });
+    }
+  }, []);
 
   return (
     <>
@@ -26,7 +32,8 @@ function RouteSwitch({ showLoader }) {
           <Route path="/character" element={<Dashboard />} />
           <Route path="/location" element={<Dashboard />} />
           <Route path="/episode" element={<Dashboard />} />
-          <Route path="/character/:id" element={<DetailPage />} />
+          <Route path="/character/:id" element={<CharacterDetailPage />} />
+          <Route path="/location/:id" element={<CharacterDetailPage />} />
         </Routes>
       </BrowserRouter>
     </>
@@ -35,6 +42,7 @@ function RouteSwitch({ showLoader }) {
 
 RouteSwitch.propTypes = {
   showLoader: PropTypes.bool.isRequired,
+  setPageInfo: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({ rickMortyStore }) => ({
@@ -43,6 +51,7 @@ const mapStateToProps = ({ rickMortyStore }) => ({
 
 const mapDispatchToProps = dispatch => ({
   toggleLoader: payload => dispatch(RickMortyActions.toggleLoader(payload)),
+  setPageInfo: payload => dispatch(RickMortyActions.setPageInfo(payload)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RouteSwitch);
