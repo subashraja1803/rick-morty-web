@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import _get from 'lodash/get';
 import { connect } from 'react-redux';
 import styles from './LocationPage.module.scss';
-import LocationCard from '../../../../molecules2/Cards/LocationCard';
+import LocationCard from '../../../../molecules/Cards/LocationCard';
 
 function LocationPage({
   cardData, pageInfo,

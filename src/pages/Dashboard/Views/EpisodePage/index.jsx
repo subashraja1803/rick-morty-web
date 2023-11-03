@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import _get from 'lodash/get';
 import { connect } from 'react-redux';
 import styles from './EpisodePage.module.scss';
-import EpisodeCard from '../../../../molecules2/Cards/EpisodeCard';
+import EpisodeCard from '../../../../molecules/Cards/EpisodeCard';
 
 function EpisodePage({
   cardData, pageInfo,

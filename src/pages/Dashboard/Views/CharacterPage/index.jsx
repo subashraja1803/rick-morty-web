@@ -4,10 +4,10 @@ import _get from 'lodash/get';
 import { connect } from 'react-redux';
 import { Button, Select } from 'antd';
 import styles from './CharacterPage.module.scss';
-import CharacterCard from '../../../../molecules2/Cards/CharacterCard';
+import CharacterCard from '../../../../molecules/Cards/CharacterCard';
 import RickMortyActions from '../../../../store/RickMortyStore.actionhandlers';
 import { getPageData } from '../../../../service';
-import { CHARACTER_FILTER_TYPES, filterValueOptions } from '../../../../constants2/RickMortyConstants';
+import { CHARACTER_FILTER_TYPES, filterValueOptions } from '../../../../constants/RickMortyConstants';
 
 function CharacterPage({
   cardData, pageInfo, setPageInfo, setCardData, setApiInfo, setSearchText,
