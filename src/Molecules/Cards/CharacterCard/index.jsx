@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import styles from './CharacterCard.module.scss';
-import { STATUS_COLOR } from '../../../Constants/RickMortyConstants';
+import { STATUS_COLOR } from '../../../constants/RickMortyConstants';
 
 function CharacterCard({ cardData, pageInfo }) {
   const {

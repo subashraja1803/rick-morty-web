@@ -4,8 +4,8 @@ import _get from 'lodash/get';
 import { connect } from 'react-redux';
 import { Button, Select } from 'antd';
 import styles from './CharacterPage.module.scss';
-import CharacterCard from '../../../../Molecules/Cards/CharacterCard';
-import { CHARACTER_FILTER_TYPES, filterValueOptions } from '../../../../Constants/RickMortyConstants';
+import CharacterCard from '../../../../molecules/Cards/CharacterCard';
+import { CHARACTER_FILTER_TYPES, filterValueOptions } from '../../../../constants/RickMortyConstants';
 import RickMortyActions from '../../../../store/RickMortyStore.actionhandlers';
 import { getPageData } from '../../../../service';
 
