@@ -7,8 +7,8 @@ import styles from './DashBoard.module.scss';
 import { getPageData } from '../../service';
 import RickMortyActions from '../../store/RickMortyStore.actionhandlers';
 import { PAGE_TYPES } from '../../constants/RickMortyConstants';
-import PaginationFooter from '../../molecules/PaginationFooter';
 import SearchBox from '../../molecules/SearchBox';
+import PaginationFooter from '../../Molecules/PaginationFooter';
 
 function Dashboard({
   pageInfo, setCardData, setApiInfo, setPageInfo, setSearchText, searchText,
@@ -64,7 +64,7 @@ function Dashboard({
         ))}
       </div>
       <div className={styles.mainContent}>
-        <div className={styles.characterHeader}>Characters</div>
+        <div className={styles.characterHeader}>{PAGE_TYPES[pageType]?.label}</div>
         <div className={styles.subHeader}>
           <SearchBox
             searchText={searchText}

@@ -18,14 +18,11 @@ function RouteSwitch({ showLoader, setPageInfo }) {
     if (pathname === '/') {
       window.location.replace('/character');
     }
-  }, [pathname]);
-
-  useEffect(() => {
     const pageType = pathname.split('/')[1];
     if (['character', 'location', 'episode'].includes(pageType)) {
       setPageInfo({ pageType });
     }
-  }, []);
+  }, [pathname]);
 
   return (
     <>
