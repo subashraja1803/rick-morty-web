@@ -13,6 +13,7 @@ function LocationPage({
       <div className={styles.cardsSection}>
         {cardData.length > 0 ? cardData.map(data => (
           <LocationCard
+            key={data?.id}
             pageInfo={pageInfo}
             cardData={data}
           />

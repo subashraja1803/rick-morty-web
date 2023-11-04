@@ -104,6 +104,7 @@ function CharacterPage({
       <div className={styles.cardsSection}>
         {filteredData.length > 0 ? filteredData.map(data => (
           <CharacterCard
+            key={data?.id}
             pageInfo={pageInfo}
             cardData={data}
           />

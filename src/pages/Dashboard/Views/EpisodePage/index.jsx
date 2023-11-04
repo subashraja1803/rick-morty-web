@@ -13,6 +13,7 @@ function EpisodePage({
       <div className={styles.cardsSection}>
         {cardData.length > 0 ? cardData.map(data => (
           <EpisodeCard
+            key={data?.id}
             pageInfo={pageInfo}
             cardData={data}
           />

@@ -30,6 +30,7 @@ function LocationDetailPage({
       });
     }
   }, [residents]);
+  useEffect(() => () => setSingleData({}), []);
   const id = window.location.pathname.split('/').pop();
   useEffect(() => {
     getPageData({ pageType }, '', id).then((data) => {
