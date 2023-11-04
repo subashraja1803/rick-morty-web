@@ -1,4 +1,5 @@
 import { handleActions } from 'redux-actions';
+import { RICK_MORTY_STORE_ACTIONS } from './constants';
 
 const initialState = {
   showLoader: false,
@@ -11,15 +12,6 @@ const initialState = {
   cardData: [],
   apiInfo: {},
   singleData: {},
-};
-
-export const RICK_MORTY_STORE_ACTIONS = {
-  TOGGLE_LOADER: 'RICK_MORTY_STORE_TOGGLE_LOADER',
-  SET_PAGE_INFO: 'RICK_MORTY_STORE_SET_PAGE_INFO',
-  SET_CARD_DATA: 'RICK_MORTY_STORE_SET_CARD_DATA',
-  SET_API_INFO: 'RICK_MORTY_STORE_SET_API_INFO',
-  SET_SEARCH_TEXT: 'RICK_MORTY_STORE_SET_SEARCH_TEXT',
-  SET_SINGLE_DATA: 'RICK_MORTY_STORE_SET_SINGLE_DATA',
 };
 
 export default handleActions({

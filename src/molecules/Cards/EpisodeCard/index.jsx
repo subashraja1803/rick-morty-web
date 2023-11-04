@@ -12,12 +12,12 @@ function EpisodeCard({
   const navigate = useNavigate();
   return (
     <div className={styles.episodeCard}>
-      <div
+      <span
         className={styles.name}
         onClick={() => navigate(`/${pageInfo?.pageType}/${id}`)}
         role="none"
       >{name}
-      </div>
+      </span>
       <div className={styles.detail}>
         <span className={styles.header}>Air Date: </span>
         <span className={styles.value}>{air_date}</span>
@@ -35,7 +35,7 @@ function EpisodeCard({
 }
 
 EpisodeCard.propTypes = {
-  cardData: PropTypes.array.isRequired,
+  cardData: PropTypes.object.isRequired,
   pageInfo: PropTypes.object.isRequired,
 };
 

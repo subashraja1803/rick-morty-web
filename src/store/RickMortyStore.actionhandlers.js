@@ -1,4 +1,4 @@
-import { RICK_MORTY_STORE_ACTIONS } from '.';
+import { RICK_MORTY_STORE_ACTIONS } from './constants';
 
 export default class RickMortyActions {
   static setPageInfo(payload) {
