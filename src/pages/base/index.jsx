@@ -9,6 +9,8 @@ import Loader from '../../molecules/Loader';
 import Dashboard from '../Dashboard';
 import RickMortyActions from '../../store/RickMortyStore.actionhandlers';
 import CharacterDetailPage from '../DetailPage/CharacterDetailPage';
+import LocationDetailPage from '../DetailPage/LocationDetailPage';
+import EpisodeDetailPage from '../DetailPage/EpisodeDetailPage';
 
 function RouteSwitch({ showLoader, setPageInfo }) {
   const { pathname } = window.location;
@@ -19,8 +21,9 @@ function RouteSwitch({ showLoader, setPageInfo }) {
   }, [pathname]);
 
   useEffect(() => {
-    if (['character', 'location', 'episode'].includes(pathname.replace('/', ''))) {
-      setPageInfo({ pageType: pathname.replace('/', '') });
+    const pageType = pathname.split('/')[1];
+    if (['character', 'location', 'episode'].includes(pageType)) {
+      setPageInfo({ pageType });
     }
   }, []);
 
@@ -33,7 +36,8 @@ function RouteSwitch({ showLoader, setPageInfo }) {
           <Route path="/location" element={<Dashboard />} />
           <Route path="/episode" element={<Dashboard />} />
           <Route path="/character/:id" element={<CharacterDetailPage />} />
-          <Route path="/location/:id" element={<CharacterDetailPage />} />
+          <Route path="/location/:id" element={<LocationDetailPage />} />
+          <Route path="/episode/:id" element={<EpisodeDetailPage />} />
         </Routes>
       </BrowserRouter>
     </>

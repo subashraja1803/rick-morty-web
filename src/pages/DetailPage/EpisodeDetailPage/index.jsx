@@ -5,32 +5,31 @@ import { BackwardOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import styles from './CharacterDetailPage.module.scss';
+import styles from './EpisodeDetailPage.module.scss';
 import { getPageData } from '../../../service';
 import RickMortyActions from '../../../store/RickMortyStore.actionhandlers';
-import { STATUS_COLOR } from '../../../constants/RickMortyConstants';
 
-function CharacterDetailPage({
+function EpisodeDetailPage({
   pageInfo, setSingleData, singleData,
 }) {
   const { pageType } = pageInfo;
   const {
-    name, image, episode, status, species, gender, type, origin, location,
+    name, characters, air_date, episode,
   } = singleData;
-  const [episodesDetail, setEpisodesDetail] = useState([]);
+  const [charactersDetail, setCharactersDetail] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
-    if (episode?.length) {
+    if (characters?.length) {
       const allEpIds = [];
-      episode.forEach((ep) => {
+      characters.forEach((ep) => {
         allEpIds.push(ep.split('/').pop());
       });
-      getPageData({ pageType: 'episode' }, '', allEpIds).then((result) => {
-        if (result.length) setEpisodesDetail(result);
-        else setEpisodesDetail([result]);
+      getPageData({ pageType: 'character' }, '', allEpIds).then((result) => {
+        if (result.length) setCharactersDetail(result);
+        else charactersDetail([result]);
       });
     }
-  }, [episode]);
+  }, [characters]);
   const id = window.location.pathname.split('/').pop();
   useEffect(() => {
     getPageData({ pageType }, '', id).then((data) => {
@@ -47,36 +46,18 @@ function CharacterDetailPage({
       </div>
       <div className={styles.titleSection}>
         <span>{name}</span>
-        <img
-          src={image}
-          alt=""
-        />
       </div>
-      <div className={styles.characterDetails}>
+      <div className={styles.locationDetails}>
         <div className={styles.details}>
-          <p>Status: </p>
-          <span className={styles.status}>
-            <div
-              className={styles.statusIcon}
-              style={STATUS_COLOR[status?.toLowerCase()] ? { backgroundColor: STATUS_COLOR[status?.toLowerCase()] } : {}}
-            >
-            </div>{status}
-          </span>
-          <p>Species: </p>
-          <span>{species || 'Unknown'}</span>
-          <p>Gender: </p>
-          <span>{gender || 'Unknown'}</span>
-          <p>Type: </p>
-          <span>{type || 'Unknown'}</span>
-          <p>Origin Location: </p>
-          <span>{origin?.name}</span>
-          <p>Last Seen Location: </p>
-          <span>{location?.name}</span>
+          <p>Air Date: </p>
+          <span>{air_date || 'Unknown'}</span>
+          <p>Episode: </p>
+          <span>{episode || 'Unknown'}</span>
         </div>
         <div className={styles.episodesSection}>
-          <h1>Episodes List:</h1>
+          <h1>Characters List: </h1>
           {
-            (episodesDetail || []).map(({ name: epName, id: epId }, index) => (
+            (charactersDetail || []).map(({ name: epName, id: epId }, index) => (
               <span key={epId}>{index + 1}. {epName}</span>
             ))
           }
@@ -86,7 +67,7 @@ function CharacterDetailPage({
   );
 }
 
-CharacterDetailPage.propTypes = {
+EpisodeDetailPage.propTypes = {
   pageInfo: PropTypes.object.isRequired,
   setSingleData: PropTypes.func.isRequired,
   singleData: PropTypes.object.isRequired,
@@ -101,4 +82,4 @@ const mapDispatchtoProps = dispatch => ({
   setSingleData: payload => dispatch(RickMortyActions.setSingleData(payload)),
 });
 
-export default connect(mapStateToProps, mapDispatchtoProps)(CharacterDetailPage);
+export default connect(mapStateToProps, mapDispatchtoProps)(EpisodeDetailPage);
