@@ -6,11 +6,17 @@ module.exports = {
   coveragePathIgnorePatterns: [
     '<rootDir>/config/*',
   ],
-  transform: {
-    '^.+\\.(js|jsx)$': '@babel/preset-react',
-  },
   coverageDirectory: 'coverage',
   testEnvironment: 'jsdom',
+  transform: {
+    '^.+\\.(js|jsx|ts|tsx)$': 'babel-jest',
+  },
+
+  // Ignore certain directories from testing
+  testPathIgnorePatterns: ['<rootDir>/node_modules/'],
+
+  // An array of test framework scripts that should run before each test
+  // setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
   setupFilesAfterEnv: ['<rootDir>/config/jest.setup.js'],
   transformIgnorePatterns: [],
   moduleNameMapper: {

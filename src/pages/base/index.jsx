@@ -13,7 +13,7 @@ import LocationDetailPage from '../DetailPage/LocationDetailPage';
 import EpisodeDetailPage from '../DetailPage/EpisodeDetailPage';
 
 function RouteSwitch(props) {
-  const { showLoader, setPageInfo } = props;
+  const { showLoader, setPageInfo, pageInfo } = props;
   const { pathname } = window.location;
   const navigate = useNavigate();
   useEffect(() => {
@@ -30,9 +30,7 @@ function RouteSwitch(props) {
     <>
       <Loader loading={showLoader} />
       <Routes>
-        <Route path="/character" element={<Dashboard />} />
-        <Route path="/location" element={<Dashboard />} />
-        <Route path="/episode" element={<Dashboard />} />
+        <Route path={`/${pageInfo?.pageType}`} element={<Dashboard />} />
         <Route path="/character/:id" element={<CharacterDetailPage />} />
         <Route path="/location/:id" element={<LocationDetailPage />} />
         <Route path="/episode/:id" element={<EpisodeDetailPage />} />
@@ -44,10 +42,12 @@ function RouteSwitch(props) {
 RouteSwitch.propTypes = {
   showLoader: PropTypes.bool.isRequired,
   setPageInfo: PropTypes.func.isRequired,
+  pageInfo: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = ({ rickMortyStore }) => ({
   showLoader: _get(rickMortyStore, 'showLoader'),
+  pageInfo: _get(rickMortyStore, 'pageInfo'),
 });
 
 const mapDispatchToProps = dispatch => ({
