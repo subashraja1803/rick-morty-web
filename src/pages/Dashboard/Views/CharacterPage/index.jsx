@@ -83,21 +83,23 @@ function CharacterPage({
             options={filter?.name ? filterValueOptions[filter?.name] : [{ label: 'Choose Filter Type', value: 'Choose Filter Type', disabled: true }]}
           />
         </div>
-        <Button
-          className={styles.applyFilterButton}
-          type="primary"
-          onClick={onApplyFilter}
-        >
-          Apply Filter
-        </Button>
-        <Button
-          className={styles.clearFilterButton}
-          type="primary"
-          danger
-          onClick={onClearFilter}
-        >
-          Clear Filter
-        </Button>
+        <div className={styles.filterButtons}>
+          <Button
+            className={styles.applyFilterButton}
+            type="primary"
+            onClick={onApplyFilter}
+          >
+            Apply Filter
+          </Button>
+          <Button
+            className={styles.clearFilterButton}
+            type="primary"
+            danger
+            onClick={onClearFilter}
+          >
+            Clear Filter
+          </Button>
+        </div>
       </div>
       <div className={styles.cardsSection}>
         {filteredData.length > 0 ? filteredData.map(data => (

@@ -15,6 +15,10 @@
         width: 16rem;
       }
     }
+    .filterButtons {
+      display: flex;
+      gap: 1rem;
+    }
   }
   .cardsSection {
     display: flex;
