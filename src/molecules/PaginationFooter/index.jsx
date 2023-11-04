@@ -8,14 +8,13 @@ import RickMortyActions from '../../store/RickMortyStore.actionhandlers';
 import { getPageData } from '../../service';
 
 function PaginationFooter({
-  apiInfo, pageInfo, setApiInfo, setCardData, toggleLoader, setPageInfo, searchText,
+  apiInfo, pageInfo, setApiInfo, setCardData, setPageInfo, searchText,
 }) {
   const {
     prev, next, pages,
   } = apiInfo;
   const { pageNo } = pageInfo;
   const goToClickedPage = (page) => {
-    toggleLoader(true);
     getPageData({ ...pageInfo, pageNo: page }, searchText).then(({ info, results }) => {
       setPageInfo({ pageNo: page });
       setCardData(results);
@@ -24,7 +23,6 @@ function PaginationFooter({
       setCardData([]);
       setApiInfo({});
     }).finally(() => {
-      toggleLoader(false);
     });
   };
 
@@ -67,7 +65,6 @@ PaginationFooter.propTypes = {
   pageInfo: PropTypes.object.isRequired,
   setApiInfo: PropTypes.func.isRequired,
   setCardData: PropTypes.func.isRequired,
-  toggleLoader: PropTypes.func.isRequired,
   setPageInfo: PropTypes.func.isRequired,
   searchText: PropTypes.string.isRequired,
 };
@@ -79,7 +76,6 @@ const mapStateToProps = ({ rickMortyStore }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  toggleLoader: payload => dispatch(RickMortyActions.toggleLoader(payload)),
   setPageInfo: payload => dispatch(RickMortyActions.setPageInfo(payload)),
   setCardData: payload => dispatch(RickMortyActions.setCardData(payload)),
   setApiInfo: payload => dispatch(RickMortyActions.setApiInfo(payload)),

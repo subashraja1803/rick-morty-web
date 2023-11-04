@@ -12,7 +12,6 @@ import PaginationFooter from '../../molecules/PaginationFooter';
 
 function Dashboard({
   pageInfo, setCardData, setApiInfo, setPageInfo, setSearchText, searchText,
-  toggleLoader,
 }) {
   const { pageType } = pageInfo;
   const navigate = useNavigate();
@@ -27,7 +26,6 @@ function Dashboard({
     });
   }, [pageInfo?.pageType]);
   const onCharacterSearch = () => {
-    toggleLoader(true);
     getPageData({ ...pageInfo, pageNo: 1 }, searchText).then(({ info, results }) => {
       setCardData(results);
       setApiInfo(info);
@@ -35,7 +33,6 @@ function Dashboard({
       setCardData([]);
       setApiInfo({});
     }).finally(() => {
-      toggleLoader(false);
       setPageInfo({ pageNo: 1 });
     });
   };
@@ -86,7 +83,6 @@ Dashboard.propTypes = {
   setPageInfo: PropTypes.func.isRequired,
   setSearchText: PropTypes.func.isRequired,
   searchText: PropTypes.string.isRequired,
-  toggleLoader: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({ rickMortyStore }) => ({
@@ -99,7 +95,6 @@ const mapDispatchToProps = dispatch => ({
   setPageInfo: payload => dispatch(RickMortyActions.setPageInfo(payload)),
   setCardData: payload => dispatch(RickMortyActions.setCardData(payload)),
   setSearchText: payload => dispatch(RickMortyActions.setSearchText(payload)),
-  toggleLoader: payload => dispatch(RickMortyActions.toggleLoader(payload)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

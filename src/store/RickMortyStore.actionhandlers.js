@@ -8,13 +8,6 @@ export default class RickMortyActions {
     };
   }
 
-  static toggleLoader(payload) {
-    return {
-      type: RICK_MORTY_STORE_ACTIONS.TOGGLE_LOADER,
-      payload,
-    };
-  }
-
   static setCardData(payload) {
     return {
       type: RICK_MORTY_STORE_ACTIONS.SET_CARD_DATA,
