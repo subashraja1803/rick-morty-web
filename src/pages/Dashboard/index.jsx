@@ -7,8 +7,8 @@ import styles from './DashBoard.module.scss';
 import { getPageData } from '../../service';
 import RickMortyActions from '../../store/RickMortyStore.actionhandlers';
 import { PAGE_TYPES } from '../../constants/RickMortyConstants';
-import SearchBox from '../../molecules2/SearchBox';
-import PaginationFooter from '../../molecules2/PaginationFooter';
+import SearchBox from '../../molecules/SearchBox';
+import PaginationFooter from '../../molecules/PaginationFooter';
 
 function Dashboard({
   pageInfo, setCardData, setApiInfo, setPageInfo, setSearchText, searchText,
