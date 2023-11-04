@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import _get from 'lodash/get';
 import {
-  BrowserRouter, Routes, Route,
+  Routes, Route, useNavigate,
 } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Loader from '../../molecules/Loader';
@@ -12,11 +12,13 @@ import CharacterDetailPage from '../DetailPage/CharacterDetailPage';
 import LocationDetailPage from '../DetailPage/LocationDetailPage';
 import EpisodeDetailPage from '../DetailPage/EpisodeDetailPage';
 
-function RouteSwitch({ showLoader, setPageInfo }) {
+function RouteSwitch(props) {
+  const { showLoader, setPageInfo } = props;
   const { pathname } = window.location;
+  const navigate = useNavigate();
   useEffect(() => {
     if (pathname === '/') {
-      window.location.replace('/character');
+      navigate('/character');
     }
     const pageType = pathname.split('/')[1];
     if (['character', 'location', 'episode'].includes(pageType)) {
@@ -27,16 +29,14 @@ function RouteSwitch({ showLoader, setPageInfo }) {
   return (
     <>
       <Loader loading={showLoader} />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/character" element={<Dashboard />} />
-          <Route path="/location" element={<Dashboard />} />
-          <Route path="/episode" element={<Dashboard />} />
-          <Route path="/character/:id" element={<CharacterDetailPage />} />
-          <Route path="/location/:id" element={<LocationDetailPage />} />
-          <Route path="/episode/:id" element={<EpisodeDetailPage />} />
-        </Routes>
-      </BrowserRouter>
+      <Routes>
+        <Route path="/character" element={<Dashboard />} />
+        <Route path="/location" element={<Dashboard />} />
+        <Route path="/episode" element={<Dashboard />} />
+        <Route path="/character/:id" element={<CharacterDetailPage />} />
+        <Route path="/location/:id" element={<LocationDetailPage />} />
+        <Route path="/episode/:id" element={<EpisodeDetailPage />} />
+      </Routes>
     </>
   );
 }
