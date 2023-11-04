@@ -35,7 +35,7 @@ function LocationCard({
 }
 
 LocationCard.propTypes = {
-  cardData: PropTypes.array.isRequired,
+  cardData: PropTypes.object.isRequired,
   pageInfo: PropTypes.object.isRequired,
 };
 
