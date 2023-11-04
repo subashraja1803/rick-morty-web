@@ -5,7 +5,7 @@ import {
   BrowserRouter, Routes, Route,
 } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Loader from '../../molecules/Loader';
+import Loader from '../../molecules2/Loader';
 import Dashboard from '../Dashboard';
 import RickMortyActions from '../../store/RickMortyStore.actionhandlers';
 import CharacterDetailPage from '../DetailPage/CharacterDetailPage';
