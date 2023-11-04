@@ -37,7 +37,10 @@ function CharacterDetailPage({
       setSingleData(data);
     });
   }, [id, pageType]);
-  useEffect(() => () => setSingleData({}), []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    return () => setSingleData({});
+  }, []);
   return (
     <div className={styles.detailPage}>
       <div className={styles.backButton}>

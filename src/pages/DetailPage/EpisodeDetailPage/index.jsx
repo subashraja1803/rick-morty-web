@@ -30,7 +30,10 @@ function EpisodeDetailPage({
       });
     }
   }, [characters]);
-  useEffect(() => () => setSingleData({}), []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    return () => setSingleData({});
+  }, []);
   const id = window.location.pathname.split('/').pop();
   useEffect(() => {
     getPageData({ pageType }, '', id).then((data) => {
