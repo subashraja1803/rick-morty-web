@@ -26,7 +26,7 @@ function EpisodeDetailPage({
       });
       getPageData({ pageType: 'character' }, '', allEpIds).then((result) => {
         if (result.length) setCharactersDetail(result);
-        else charactersDetail([result]);
+        else setCharactersDetail([result]);
       });
     }
   }, [characters]);
@@ -43,7 +43,7 @@ function EpisodeDetailPage({
   return (
     <div className={styles.detailPage}>
       <div className={styles.backButton}>
-        <Button type="dashed" onClick={() => navigate(`/${pageType}`)}>
+        <Button id="episodePage_backButton" type="dashed" onClick={() => navigate(`/${pageType}`)}>
           <BackwardOutlined />
           <span>Back</span>
         </Button>

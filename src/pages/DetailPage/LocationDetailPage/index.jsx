@@ -26,7 +26,7 @@ function LocationDetailPage({
       });
       getPageData({ pageType: 'character' }, '', allEpIds).then((result) => {
         if (result.length) setCharactersDetail(result);
-        else charactersDetail([result]);
+        else setCharactersDetail([result]);
       });
     }
   }, [residents]);

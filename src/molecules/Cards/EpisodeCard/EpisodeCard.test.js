@@ -23,7 +23,6 @@ describe('EpisodeCard', () => {
     const { getByText } = render(
       <EpisodeCard cardData={cardData} pageInfo={pageInfo} />
     );
-    screen.debug();
     const episodeName = getByText('Pilot');
     expect(episodeName).toBeInTheDocument();
   });
@@ -37,7 +36,6 @@ describe('EpisodeCard', () => {
     );
 
     const episodeName = getByText('Pilot');
-    screen.debug(episodeName);
     fireEvent.click(episodeName);
 
     expect(navigate).toHaveBeenCalled();
