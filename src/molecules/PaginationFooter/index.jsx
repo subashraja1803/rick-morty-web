@@ -15,15 +15,16 @@ function PaginationFooter({
   } = apiInfo;
   const { pageNo } = pageInfo;
   const goToClickedPage = (page) => {
-    getPageData({ ...pageInfo, pageNo: page }, searchText).then(({ info, results }) => {
-      setPageInfo({ pageNo: page });
-      setCardData(results);
-      setApiInfo(info);
-    }).catch(() => {
-      setCardData([]);
-      setApiInfo({});
-    }).finally(() => {
-    });
+    if (page > 0 && page <= pages) {
+      getPageData({ ...pageInfo, pageNo: page }, searchText).then(({ info, results }) => {
+        setPageInfo({ pageNo: page });
+        setCardData(results);
+        setApiInfo(info);
+      }).catch(() => {
+        setCardData([]);
+        setApiInfo({});
+      });
+    }
   };
 
   const pageOptions = useMemo(() => {
