@@ -116,6 +116,7 @@ module.exports = {
         forbidDefaultForRequired: true,
       },
     ],
+    'linebreak-style': ['error', 'windows'],
     'react/require-extension': 0,
     'react/self-closing-comp': 0,
     'react/jsx-one-expression-per-line': 0,
